@@ -5,98 +5,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beztami</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <style>
+        .font-gelasio {
+            font-family: 'Gelasio', serif;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <img src="" alt="" srcset="">
-        <h1>Bienvenu Votre Tableau de bord</h1>
-    </header>
-    <main>
-        <aside>
-            <div>
-                <img src="" alt="" srcset="">
-                <h2>ABADA AZIZ </h2>
+    <div class="bg-[#3A2061] grid grid-cols-9 grid-rows-17">
+        <header
+            class="bg-[#2C2644] font-gelasio text-white flex items-center justify-center space-x-3 col-span-9 row-span-4 p-4">
+            <i id="menu-icon-btn" class='bx bx-menu text-2xl cursor-pointer mr-16 md:hidden'></i>
+            <h1 class="text-xl font-semibold">Bienvenu Votre Tableau de bord</h1>
+        </header>
+        <aside id="sidebar"
+            class="fixed top-0 left-0 h-full w-64 bg-[#2C2644] p-6 transform -translate-x-full transition-transform duration-300 z-50 md:translate-x-0 md:static md:col-span-2 md:row-span-4">
+
+            <button id="close-btn" class="absolute top-4 right-4 text-white text-2xl md:hidden hover:text-gray-300">
+                <i class='bx bx-x'></i>
+            </button>
+            <div class="profile text-white text-center mb-6 mt-5 md:mt-0">
+                <img class="mb-7 md:top-0 md:left-0 md:w-" src="./assets/images/logo.png" alt="" srcset="">
+                <img src="./assets/images/men.jpg" alt="photo profile"
+                    class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-[#D407D4] p-1">
+                <h2 class="font-semibold">ABADA AZIZ</h2>
             </div>
-            <nav>
-                <ul>
-                    <li>TRANSACTION</li>
-                    <li>Paramètre</li>
-                    <li>Compte</li>
-                    <li>Aide</li>
+            <nav class="nav mb-8">
+                <ul class="space-y-2">
+                    <li class="text-white p-2 hover:bg-[#3A2061] rounded cursor-pointer">TRANSACTION</li>
+                    <li class="text-white p-2 hover:bg-[#3A2061]  rounded cursor-pointer">Paramètre</li>
+                    <li class="text-white p-2 hover:bg-[#3A2061] rounded cursor-pointer">Compte</li>
+                    <li class="text-white p-2 hover:bg-[#3A2061]  rounded cursor-pointer">Aide</li>
                 </ul>
             </nav>
-            <button type="button">DÉCONNEXION</button>
+            <button type="button"
+                class="w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">DÉCONNEXION</button>
         </aside>
-        <section>
-            <h2>Vue d'ensemble</h2>
-            <div>
+        <section class="col-span-9 md:col-span-7 mx-9 flex flex-col">
+            <div class="Vue_ensemble text-white mt-5">
+                <h2 class="font-bold text-2xl">Vue d'ensemble</h2>
                 <div>
-                    Solde
-                </div>
-                <div>
-                    Revenus
-                </div>
-                <div>
-                    Dépenses
-                </div>
-            </div>
-        </section>
-        <section>
-            <h2>Vos Transactions</h2>
-            <button type="button">Ajouter une transaction</button>
-            <div>
-                <div>
-                    Revenu 
-                    + 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
-                </div>
-                <div>
-                    Dépense 
-                    - 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
-                </div>
-                <div>
-                    Revenu 
-                    + 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
-                </div>
-                <div>
-                    Dépense 
-                    - 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
-                </div>
-                <div>
-                    Revenu 
-                    + 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
-                </div>
-                <div>
-                    Dépense 
-                    - 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
-                </div>
-                <div>
-                    Revenu 
-                    + 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
-                </div>
-                <div>
-                    Dépense 
-                    - 2000 DH
-                    <button>Modifier</button>
-                    <BUtton>Supprimer</BUtton>
+                    <div
+                        class="bg-blue-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:bg-sky-700 hover:font-bold">
+                        Solde:
+                        30000 dh
+                    </div>
+                    <div
+                        class="bg-green-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:font-bold hover:bg-green-700">
+                        Revenus:
+                        4000 dh
+                    </div>
+                    <div
+                        class="bg-red-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:bg-red-700 hover:font-bold">
+                        Dépenses:
+                        - 500 dh
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
+        <section class="col-span-9 md:col-span-7 mx-9 flex flex-col">
+            <div>
+                <div class="flex my-5 flex-wrap gap-3">
+                    <h2 class="font-bold text-white">Vos Transactions</h2>
+                    <button type="button"
+                        class="bg-white rounded-2xl pl-1 pr-3 hover:font-bold hover:bg-black hover:text-white flex items-center gap-1">
+                        <i class='bx bx-plus-circle'></i>
+                        Ajouter une transaction
+                    </button>
+                </div>
+                <div class="bg-[#6A5E91] w-full h-60 rounded-2xl mb-9 hover:bg-[#A89CCF]">
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        const menuBtn = document.getElementById('menu-icon-btn');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('close-btn');
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+
+        menuBtn.addEventListener('click', () => {
+            console.log('Menu clicked');
+            sidebar.classList.toggle('-translate-x-full');
+        });
+    </script>
 </body>
 
 </html>
