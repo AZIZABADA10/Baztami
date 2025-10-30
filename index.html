@@ -14,14 +14,14 @@
 </head>
 
 <body>
-    <div class="bg-[#3A2061] grid grid-cols-9 grid-rows-17">
+    <div class="bg-[#3A2061] grid grid-cols-9 grid-rows-20">
         <header
             class="bg-[#2C2644] font-gelasio text-white flex items-center justify-center space-x-3 col-span-9 row-span-4 p-4 md:mr-0">
             <i id="menu-icon-btn" class='bx bx-menu text-2xl cursor-pointer mr-16 md:hidden'></i>
-            <h1 class="text-xl font-semibold ">Bienvenu sur votre Tableau de bord</h1>
+            <h1 class="text-xl font-semibold">Bienvenu sur votre Tableau de bord</h1>
         </header>
         <aside id="sidebar"
-            class="fixed top-0 left-0 h-full w-64 bg-[#2C2644] p-6 transform -translate-x-full transition-transform duration-300 z-50 md:translate-x-0 md:static md:col-span-2 md:row-span-4">
+            class="fixed z-50 top-0 left-0 h-screen w-64 bg-[#2C2644] p-6 transform -translate-x-full transition-transform duration-300 z-50 md:translate-x-0 md:static md:col-span-2 md:row-span-4">
 
             <button id="close-btn" class="absolute top-4 right-4 text-white text-2xl md:hidden hover:text-gray-300">
                 <i class='bx bx-x'></i>
@@ -73,7 +73,7 @@
                         class="bg-white rounded-2xl pl-1 pr-3 hover:font-bold hover:bg-black hover:text-white flex items-center gap-1">
                         <i class='bx bx-plus-circle'></i>
                         Ajouter une transaction
-                        
+
                     </button>
                     <img src="./assets/icons/telecharger.png" alt="" class="w-5 h-5 cursor-pointer">
                 </div>
@@ -81,6 +81,7 @@
                 </div>
             </div>
         </section>
+
     </div>
     <script src="./js/nav.js"></script>
 </body>
