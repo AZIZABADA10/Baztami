@@ -77,27 +77,43 @@
                     </button>
                     <img src="./assets/icons/telecharger.png" alt="" class="w-5 h-5 cursor-pointer">
                 </div>
-                <div id="list-transactions" class="bg-[#6A5E91] w-full h-60 rounded-2xl mb-9 hover:bg-[#A89CCF]">
+                <div id="listTransactions" class="bg-[#6A5E91] w-full h-60 rounded-2xl mb-9 hover:bg-[#A89CCF]">
                 </div>
             </div>
         </section>
         <section>
-            <div id="FormAjouter" class="absolute top-48 left-24 bg-[#eee] w-60 h-90 rounded-xl p-4 py-6 ml-7 md:left-96 md:top-34 hidden "> 
-                
-                <p class=" mb-4">Ajouter une transaction &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="text-red-700 cursor-pointer" id="fermerFormAjouter">&times;</span></p>
-                    <form action="" class="pr-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Description: </label>
-                    <input type="text" class="w-44 border border-gray-400 rounded h-8 ]"> <br>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Montant: </label>
-                    <input type="number" class="w-44 rounded border border-gray-400  h-8 "><br>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Type:</label>
-                    <select class="w-44 px-4 py-2 border border-gray-300 rounded mb-6">
-                        <option value="Revenu">Revenu</option>
-                        <option value="Dépense">Dépense</option>
-                    </select><br>
-                    <label class="text-sm font-medium text-gray-700 mr-1 mb-1">Date: </label>
-                    <input type="date" class="w-44 px-4 py-2 border border-gray-300 rounded-lg mb-6" >
-                    <button class="ml-7 w-32 bg-blue-600 hover:bg-green-800 text-white font-medium rounded-lg transition duration-200">Ajouter</button>
+            <div id="form-container"
+                class="absolute top-48 left-24 bg-[#eee] w-60 rounded-xl p-4 py-6 ml-7 md:left-96 md:top-34 hidden">
+                <p class="mb-4 text-lg font-semibold">
+                    Ajouter une transaction
+                    <span id="btn-fermer-form" class="text-red-700 cursor-pointer float-right text-xl">&times;</span>
+                </p>
+
+                <form id="form-ajouter" class="pr-4">
+                    <label for="input-description"
+                        class="block text-sm font-medium text-gray-700 mb-1">Description:</label>
+                    <input type="text" id="input-description" name="description"
+                        class="w-44 border border-gray-400 rounded h-8 mb-2 px-2" required>
+
+                    <label for="input-montant" class="block text-sm font-medium text-gray-700 mb-1">Montant:</label>
+                    <input type="number" id="input-montant" name="montant"
+                        class="w-44 border border-gray-400 rounded h-8 mb-2 px-2" required step="0.01">
+
+                    <label for="select-type" class="block text-sm font-medium text-gray-700 mb-1">Type:</label>
+                    <select id="select-type" name="type" class="w-44 px-4 py-2 border border-gray-300 rounded mb-4"
+                        required>
+                        <option value="revenu">Revenu</option>
+                        <option value="depense">Dépense</option>
+                    </select>
+
+                    <label for="input-date" class="block text-sm font-medium text-gray-700 mb-1">Date:</label>
+                    <input type="date" id="input-date" name="date"
+                        class="w-44 px-4 py-2 border border-gray-300 rounded-lg mb-4" required>
+
+                    <button id="btn-ajouter" type="submit"
+                        class="ml-7 w-32 bg-blue-600 hover:bg-green-800 text-white font-medium rounded-lg transition duration-200">
+                        Ajouter
+                    </button>
                 </form>
             </div>
         </section>

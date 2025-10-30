@@ -1,28 +1,48 @@
-/* Ajouter un transaction   */
-
-let ajouterTransaction = document.getElementById('btn-ajoute-transaction');
-let FormAjouter = document.getElementById('FormAjouter');
-
-let FermerFormulaure = document.getElementById('fermerFormAjouter');
-let listTransactions = document.getElementById('list-transactions');
 
 
-/* la creation de liste pour stoke les transaction */
+const btnAfficherForm = document.getElementById('btn-ajoute-transaction');
+const formContainer = document.getElementById('form-container');
+const btnFermerForm = document.getElementById('btn-fermer-form');
+const formAjouter = document.getElementById('form-ajouter');
+const listTransactions = document.getElementById('listTransactions');
 
-let transactions = [];
+const inputDescription = document.getElementById('input-description');
+const inputMontant = document.getElementById('input-montant');
+const selectType = document.getElementById('select-type');
+const inputDate = document.getElementById('input-date');
 
-/* Afficher la formulaire d'ajoute */
-ajouterTransaction.addEventListener('click',function(){
-    FormAjouter.classList.remove('hidden');
-})
+const TableauTransactions = [];
 
-/* Fermer la formulaire d'ajoute */
-FermerFormulaure.addEventListener('click',function(){
-    FormAjouter.classList.add('hidden');
-})
+btnAfficherForm.addEventListener('click', () => {
+    formContainer.classList.remove('hidden');
+});
 
-/* fonction pour ajouter une transaction */
-function AjouterTransaction () {
+btnFermerForm.addEventListener('click', () => {
+    formContainer.classList.add('hidden');
+});
 
-}
+/** id pour identifier les transaction **/
+let i = 1;
 
+/*Fonction pour ajouter les transaction */
+formAjouter.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const description = inputDescription.value;
+    const montant = inputMontant.value;
+    const type = selectType.value;
+    const date = inputDate.value;
+
+    const transaction = {
+        id: i,
+        description,
+        montant,
+        type,
+        date
+    };
+
+    TableauTransactions.push(transaction);
+
+    i++;
+    formAjouter.reset();
+    formContainer.classList.add('hidden');
+});
