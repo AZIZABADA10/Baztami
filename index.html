@@ -45,7 +45,7 @@
         </aside>
         <section class="col-span-9 md:col-span-7 mx-9 ">
             <div class="Vue_ensemble text-white mt-5">
-                <h2 class="font-bold text-2xl">Vue d'ensemble</h2>
+                <h2 class="font-bold text-xl">Vue d'ensemble</h2>
                 <div class="md:flex md:justify-between">
                     <div
                         class="bg-blue-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:bg-sky-700 hover:font-bold">
@@ -68,7 +68,7 @@
         <section class="col-span-9 md:col-span-7 mx-9 flex flex-col">
             <div>
                 <div class="flex my-5 flex-wrap gap-3">
-                    <h2 class="font-bold text-white">Vos Transactions</h2>
+                    <h2 class="font-bold text-xl text-white">Vos Transactions</h2>
                     <button type="button" id="btn-ajoute-transaction"
                         class="bg-white rounded-2xl pl-1 pr-3 hover:font-bold hover:bg-black hover:text-white flex items-center gap-1">
                         <i class='bx bx-plus-circle'></i>
@@ -81,9 +81,29 @@
                 </div>
             </div>
         </section>
-
+        <section>
+            <div id="FormAjouter" class="absolute top-48 left-24 bg-[#eee] w-60 h-90 rounded-xl p-4 py-6 ml-7 md:left-96 md:top-34 hidden "> 
+                
+                <p class=" mb-4">Ajouter une transaction &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="text-red-700 cursor-pointer" id="fermerFormAjouter">&times;</span></p>
+                    <form action="" class="pr-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Description: </label>
+                    <input type="text" class="w-44 border border-gray-400 rounded h-8 ]"> <br>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Montant: </label>
+                    <input type="number" class="w-44 rounded border border-gray-400  h-8 "><br>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Type:</label>
+                    <select class="w-44 px-4 py-2 border border-gray-300 rounded mb-6">
+                        <option value="Revenu">Revenu</option>
+                        <option value="Dépense">Dépense</option>
+                    </select><br>
+                    <label class="text-sm font-medium text-gray-700 mr-1 mb-1">Date: </label>
+                    <input type="date" class="w-44 px-4 py-2 border border-gray-300 rounded-lg mb-6" >
+                    <button class="ml-7 w-32 bg-blue-600 hover:bg-green-800 text-white font-medium rounded-lg transition duration-200">Ajouter</button>
+                </form>
+            </div>
+        </section>
     </div>
     <script src="./js/nav.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
