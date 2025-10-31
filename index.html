@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gérez vos revenus, dépenses et transactions facilement avec Beztami. Suivez vos finances en temps réel depuis votre tableau de bord intuitif et sécurisé.">
+    <meta name="keywords" content="Beztami, finances, tableau de bord, transactions, gestion budget, revenus, dépenses, application finance">    <!-- 👤 Auteur du site -->
+    <meta name="author" content="Beztami Team">
+    <meta property="og:title" content="Beztami - Tableau de bord des transactions">
+    <meta property="og:description" content="Suivez vos revenus et dépenses avec Beztami, un tableau de bord simple et intuitif pour gérer vos finances.">
+    <meta property="og:url" content="https://tonsite.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Beztami - Tableau de bord des transactions">
+    <meta name="twitter:description" content="Gérez vos finances facilement avec Beztami.">
     <title>Beztami</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="bg-[#3A2061] grid grid-cols-9 grid-rows-20">
+    <main class="bg-[#3A2061] grid grid-cols-9 grid-rows-20">
         <header
             class="bg-[#2C2644] font-gelasio text-white flex items-center justify-center space-x-3 col-span-9 row-span-4 p-4 md:mr-0">
             <i id="menu-icon-btn" class='bx bx-menu text-2xl cursor-pointer mr-16 md:hidden'></i>
@@ -27,7 +36,7 @@
                 <i class='bx bx-x'></i>
             </button>
             <div class="profile text-white text-center mb-6 mt-5 md:mt-0">
-                <img class="mb-7 md:top-0 md:left-0 md:w-" src="./assets/images/logo.png" alt="" srcset="">
+                <img class="mb-7 md:top-0 md:left-0 md:w-" src="./assets/images/logo.png" alt="Logo Beztami" srcset="">
                 <img src="./assets/images/men.jpg" alt="photo profile"
                     class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-[#D407D4] p-1">
                 <h2 class="font-semibold">ABADA AZIZ</h2>
@@ -44,6 +53,7 @@
                 class="w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">DÉCONNEXION</button>
         </aside>
         <section class="col-span-9 md:col-span-7 mx-9 ">
+            <h2 class="hidden">titre hiiden</h2>
             <div class="Vue_ensemble text-white mt-5">
                 <h2 class="font-bold text-xl">Vue d'ensemble</h2>
                 <div class="md:flex md:justify-between">
@@ -52,16 +62,17 @@
                     </div>
                     <div id="RevenuTotal"
                         class=" bg-green-800 font-semibold text-xl flex rounded-xl px-6 py-5 my-5 hover:font-bold hover:bg-green-700">
-                        
+
                     </div>
                     <div id="depenseTotal"
                         class=" bg-red-800 font-semibold text-xl flex rounded-xl px-6 py-5 my-5 hover:bg-red-700 hover:font-bold">
-                        
+
                     </div>
                 </div>
             </div>
         </section>
         <section class="col-span-9 md:col-span-7 mx-9 flex flex-col">
+            <h2 class="hidden">titre hiiden</h2>
             <div>
                 <div class="flex my-5 flex-wrap gap-3">
                     <h2 class="font-bold text-xl text-white">Vos Transactions</h2>
@@ -78,6 +89,7 @@
             </div>
         </section>
         <section>
+            <h2 class="hidden">titre hiiden</h2>
             <div id="form-container"
                 class="absolute top-48 left-24 bg-[#eee] w-60 rounded-xl p-4 py-6 ml-7 md:left-96 md:top-34 hidden">
                 <p class="mb-4 text-lg font-semibold">
@@ -129,7 +141,7 @@
             </div>
 
         </section>
-    </div>
+    </main>
     <script src="./js/nav.js"></script>
     <script src="./js/main.js"></script>
 </body>
