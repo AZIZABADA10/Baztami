@@ -25,6 +25,68 @@ let idAModifier = null;
 let indexAModifier = null;
 let i = 1;
 
+// récuperation des donnée en utilisant localstorge
+function chargerTransaction() {
+    const transactionSauvgarder = localStorage.getItem('transaction');
+    if (transactionSauvgarder) {
+        TableauTransactions = JSON.parse(transactionSauvgarder);
+        if (TableauTransactions.length > 0) {
+            i = Math.max(...TableauTransactions.map(t => t.id)) + 1;
+        }
+    }
+    afficherTransactions();
+    calculerSolde();
+}
+
+function sauvegarderTransactions() {
+    localStorage.setItem('transaction', JSON.stringify(TableauTransactions));
+}
+
+
+/** Fonction pour calculer le solde, revenus et dépenses **/
+function calculerSolde() {
+    let totalRevenus = 0;
+    let totalDepenses = 0;
+
+    // Parcourir toutes les transactions
+    TableauTransactions.forEach(transaction => {
+        const montant = parseFloat(transaction.montant);
+
+        if (transaction.type === 'revenu') {
+            totalRevenus += montant;
+        } else if (transaction.type === 'depense') {
+            totalDepenses += montant;
+        }
+    });
+
+    // Calculer le solde
+    const solde = totalRevenus - totalDepenses;
+
+    // Mettre à jour l'affichage
+    afficherSolde(solde, totalRevenus, totalDepenses);
+}
+
+/** Fonction pour afficher le solde dans le DOM */
+function afficherSolde(solde, revenus, depenses) {
+
+    const elementSolde = document.getElementById('SoldeTotal');
+    const elementRevenus = document.getElementById('RevenuTotal');
+    const elementDepenses = document.getElementById('depenseTotal');
+
+
+    elementSolde.innerHTML = `Solde: <br> ${solde.toFixed(2)} dh`;
+    elementRevenus.innerHTML = `Revenus: <br> + ${revenus.toFixed(2)} dh`;
+    elementDepenses.innerHTML = `Dépenses: <br> - ${depenses.toFixed(2)} dh`;
+
+    if (solde < 0) {
+        elementSolde.classList.remove('bg-blue-800', 'hover:bg-sky-700');
+        elementSolde.classList.add('bg-orange-600', 'hover:bg-orange-700');
+    } else {
+        elementSolde.classList.remove('bg-orange-600', 'hover:bg-orange-700');
+        elementSolde.classList.add('bg-blue-800', 'hover:bg-sky-700');
+    }
+}
+
 /** Afficher le formulaire **/
 btnAfficherForm.addEventListener('click', () => formContainer.classList.remove('hidden'));
 btnFermerForm.addEventListener('click', () => formContainer.classList.add('hidden'));
@@ -63,6 +125,8 @@ formAjouter.addEventListener('submit', (event) => {
     }
 
     afficherTransactions();
+    calculerSolde();
+    sauvegarderTransactions();
     formAjouter.reset();
     formContainer.classList.add('hidden');
 });
@@ -93,14 +157,14 @@ function afficherTransactions() {
 
         // Bouton supprimer
         const btn_Supprimer = card.querySelector(`#btn-supprimer-${t.id}`);
-        btn_Supprimer.addEventListener('click', function ()  {
+        btn_Supprimer.addEventListener('click', function () {
             idASupprimer = t.id;
             modalSupprimer.classList.remove('hidden');
         });
 
         // Bouton modifier
         const btn_modifier = card.querySelector(`#btn-modifier-${t.id}`);
-        btn_modifier.addEventListener('click', function()  {
+        btn_modifier.addEventListener('click', function () {
             idAModifier = t.id;
             indexAModifier = TableauTransactions.findIndex(transa => transa.id === idAModifier);
 
@@ -128,6 +192,11 @@ btnConfirmationSuppression.addEventListener('click', () => {
         }
     }
     afficherTransactions();
+    calculerSolde();
+    sauvegarderTransactions();
     idASupprimer = null;
     modalSupprimer.classList.add('hidden');
 });
+
+
+chargerTransaction();
