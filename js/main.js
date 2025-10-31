@@ -1,17 +1,19 @@
 
-
+/* Déclaration de variables et récupération des element html via le DOM */
 const btnAfficherForm = document.getElementById('btn-ajoute-transaction');
 const formContainer = document.getElementById('form-container');
 const btnFermerForm = document.getElementById('btn-fermer-form');
 const formAjouter = document.getElementById('form-ajouter');
 const listTransactions = document.getElementById('listTransactions');
 
+/** Récupération des donnée des formululaire d'ajoute  */
 const inputDescription = document.getElementById('input-description');
 const inputMontant = document.getElementById('input-montant');
 const selectType = document.getElementById('select-type');
 const inputDate = document.getElementById('input-date');
 
-const TableauTransactions = [];
+/** Tableau des transaction */
+let TableauTransactions = [];
 
 btnAfficherForm.addEventListener('click', () => {
     formContainer.classList.remove('hidden');
@@ -49,6 +51,14 @@ formAjouter.addEventListener('submit', (event) => {
 });
 
 
+
+const modalSupprimer = document.getElementById('modal-supprimer');
+const btnConfirmationSupprission = document.getElementById('btn-confirmer-suppression');
+const btnAnnuler = document.getElementById('btn-annuler-suppression');
+
+let idASupprimer = null;
+let indexASupprimer = null;
+
 /** Fonction pour afficher les transactions **/
 function afficherTransactions() {
 
@@ -65,10 +75,10 @@ function afficherTransactions() {
                         <i class='bx bx-calendar-alt text-lg'></i>
                         <span class="text-sm">${t.date}</span>
                         <div class="flex gap-3 ml-4">
-                            <button>
+                            <button id="btn-modifier-${t.id}">
                                 <i class='bx bx-edit text-white text-lg'></i>
                             </button>
-                            <button >
+                            <button id="btn-supprimer-${t.id}">
                                 <i class='bx bx-trash text-white text-lg'></i>
                             </button>
                         </div>
@@ -77,5 +87,33 @@ function afficherTransactions() {
         `;
 
         listTransactions.appendChild(card);
+        const btn_Supprimer = card.querySelector(`#btn-supprimer-${t.id}`);
+        btn_Supprimer.addEventListener('click', function () {
+            idASupprimer = t.id;
+            modalSupprimer.classList.remove('hidden')
+        });
     });
 }
+
+
+
+
+
+btnAnnuler.addEventListener('click', function () {
+    idASupprimer = null;
+    modalSupprimer.classList.add('hidden');
+});
+
+btnConfirmationSupprission.addEventListener('click', function () {
+    if (idASupprimer !== null) {
+         indexASupprimer  = TableauTransactions.findIndex(t => t.id === idASupprimer);
+    }
+
+    if (indexASupprimer !== -1) {
+        TableauTransactions.splice(indexASupprimer , 1);
+    }
+    afficherTransactions();
+    idASupprimer = null;
+    modalSupprimer.classList.add('hidden');
+});
+

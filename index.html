@@ -50,17 +50,17 @@
                     <div
                         class="bg-blue-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:bg-sky-700 hover:font-bold">
                         Solde:
-                        30000 dh
+                        0 dh
                     </div>
                     <div
                         class="bg-green-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:font-bold hover:bg-green-700">
                         Revenus:
-                        4000 dh
+                        + 0 dh
                     </div>
                     <div
                         class="bg-red-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:bg-red-700 hover:font-bold">
                         Dépenses:
-                        - 500 dh
+                        - 0 dh
                     </div>
                 </div>
             </div>
@@ -77,7 +77,8 @@
                     </button>
                     <img src="./assets/icons/telecharger.png" alt="" class="w-5 h-5 cursor-pointer">
                 </div>
-                <div id="listTransactions" class="bg-[#6A5E91] w-full h-80 rounded-2xl mb-9 flex flex-wrap gap-2 p-4 overflow-y-auto">
+                <div id="listTransactions"
+                    class="bg-[#6A5E91] w-full h-80 rounded-2xl mb-9 flex flex-wrap gap-2 p-4 overflow-y-auto">
                 </div>
             </div>
         </section>
@@ -115,6 +116,21 @@
                         Ajouter
                     </button>
                 </form>
+            </div>
+        </section>
+        <section class="modal">
+            <div id="modal-supprimer"
+                class="hidden fixed inset-0 bg-red-600 bg-opacity-50 flex justify-center items-center z-50">
+                <div class="bg-white rounded-2xl p-6 w-80">
+                    <h2 class="text-lg font-semibold text-black mb-4">Confirmer la suppression</h2>
+                    <p class="text-black mb-6">Voulez-vous vraiment supprimer cette transaction ?</p>
+                    <div class="flex justify-end gap-4">
+                        <button id="btn-annuler-suppression"
+                            class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-lg text-gray-800">Annuler</button>
+                        <button id="btn-confirmer-suppression"
+                            class="px-4 py-2 bg-red-600 hover:bg-red-900 text-white rounded-lg">Supprimer</button>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
