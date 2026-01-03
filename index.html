@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gérez vos revenus, dépenses et transactions facilement avec Beztami. Suivez vos finances en temps réel depuis votre tableau de bord intuitif et sécurisé.">
-    <meta name="keywords" content="Beztami, finances, tableau de bord, transactions, gestion budget, revenus, dépenses, application finance">    <!-- 👤 Auteur du site -->
+    <meta name="keywords" content="Beztami, finances, tableau de bord, transactions, gestion budget, revenus, dépenses, application finance">    <!--  Auteur du site -->
     <meta name="author" content="Beztami Team">
     <meta property="og:title" content="Beztami - Tableau de bord des transactions">
     <meta property="og:description" content="Suivez vos revenus et dépenses avec Beztami, un tableau de bord simple et intuitif pour gérer vos finances.">
@@ -22,126 +22,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-    <main class="bg-[#3A2061] grid grid-cols-9 grid-rows-20">
-        <header
-            class="bg-[#2C2644] font-gelasio text-white flex items-center justify-center space-x-3 col-span-9 row-span-4 p-4 md:mr-0">
-            <i id="menu-icon-btn" class='bx bx-menu text-2xl cursor-pointer mr-16 md:hidden'></i>
-            <h1 class="text-xl font-semibold">Bienvenu sur votre Tableau de bord</h1>
-        </header>
-        <aside id="sidebar"
-            class="fixed z-50 top-0 left-0 h-screen w-64 bg-[#2C2644] p-6 transform -translate-x-full transition-transform duration-300 z-50 md:translate-x-0 md:static md:col-span-2 md:row-span-4">
+<body class="bg-[#f5f5f5] font-gelasio">
 
-            <button id="close-btn" class="absolute top-4 right-4 text-white text-2xl md:hidden hover:text-gray-300">
-                <i class='bx bx-x'></i>
+<main class="grid grid-cols-9 grid-rows-20 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-[#3A2061] to-[#2C2644] text-white flex items-center justify-between px-6 py-4 col-span-9 row-span-4 shadow-lg">
+        <div class="flex items-center space-x-3">
+            <i id="menu-icon-btn" class='bx bx-menu text-2xl cursor-pointer md:hidden'></i>
+            <h1 class="text-xl md:text-2xl font-bold tracking-wide">Bienvenu sur votre Tableau de bord</h1>
+        </div>
+        <div class="hidden md:flex space-x-3">
+            <span class="text-gray-300">Bonjour, ABADA AZIZ</span>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 bg-[#2C2644] p-6 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:static md:col-span-2 md:row-span-4 shadow-lg rounded-r-xl">
+        <button id="close-btn" class="absolute top-4 right-4 text-white text-2xl md:hidden hover:text-gray-300">
+            <i class='bx bx-x'></i>
+        </button>
+
+        <!-- Profile -->
+        <div class="profile text-center mb-8">
+            <img src="./assets/images/logo.png" alt="Logo Beztami" class="mx-auto w-24 mb-4">
+            <img src="./assets/images/men.jpg" alt="photo profile"
+                class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-pink-600 p-1 shadow-md">
+            <h2 class="font-semibold text-white text-lg">ABADA AZIZ</h2>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav mb-8">
+            <ul class="space-y-3">
+                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">TRANSACTION</li>
+                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">Paramètre</li>
+                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">Compte</li>
+                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">Aide</li>
+            </ul>
+        </nav>
+
+        <button type="button"
+            class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-shadow shadow-md">
+            DÉCONNEXION
+        </button>
+    </aside>
+
+    <!-- Vue d'ensemble -->
+    <section class="col-span-9 md:col-span-7 mx-6 mt-6">
+        <div class="text-white">
+            <h2 class="font-bold text-2xl mb-4">Vue d'ensemble</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div id="SoldeTotal" class="bg-gradient-to-r from-blue-700 to-blue-500 font-semibold text-lg rounded-2xl px-6 py-5 shadow-lg hover:shadow-xl transition-all flex justify-between items-center">
+                    <span>Solde Total</span>
+                </div>
+                <div id="RevenuTotal" class="bg-gradient-to-r from-green-700 to-green-500 font-semibold text-lg rounded-2xl px-6 py-5 shadow-lg hover:shadow-xl transition-all flex justify-between items-center">
+                    <span>Revenu Total</span>
+                </div>
+                <div id="depenseTotal" class="bg-gradient-to-r from-red-700 to-red-500 font-semibold text-lg rounded-2xl px-6 py-5 shadow-lg hover:shadow-xl transition-all flex justify-between items-center">
+                    <span>Dépense Total</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transactions -->
+    <section class="col-span-9 md:col-span-7 mx-6 mt-6">
+        <div class="flex flex-wrap justify-between items-center mb-4">
+            <h2 class="font-bold text-2xl text-[#fff]">Vos Transactions</h2>
+            <button id="btn-ajoute-transaction" class="bg-white text-[#3A2061] px-4 py-2 rounded-2xl hover:bg-[#3A2061] hover:text-white flex items-center gap-2 transition-all">
+                <i class='bx bx-plus-circle'></i> Ajouter une transaction
             </button>
-            <div class="profile text-white text-center mb-6 mt-5 md:mt-0">
-                <img class="mb-7 md:top-0 md:left-0 md:w-" src="./assets/images/logo.png" alt="Logo Beztami" srcset="">
-                <img src="./assets/images/men.jpg" alt="photo profile"
-                    class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-[#D407D4] p-1">
-                <h2 class="font-semibold">ABADA AZIZ</h2>
-            </div>
-            <nav class="nav mb-8">
-                <ul class="space-y-2">
-                    <li class="text-white p-2 hover:bg-[#3A2061] rounded cursor-pointer">TRANSACTION</li>
-                    <li class="text-white p-2 hover:bg-[#3A2061]  rounded cursor-pointer">Paramètre</li>
-                    <li class="text-white p-2 hover:bg-[#3A2061] rounded cursor-pointer">Compte</li>
-                    <li class="text-white p-2 hover:bg-[#3A2061]  rounded cursor-pointer">Aide</li>
-                </ul>
-            </nav>
-            <button type="button"
-                class="w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">DÉCONNEXION</button>
-        </aside>
-        <section class="col-span-9 md:col-span-7 mx-9 ">
-            <h2 class="hidden">titre hiiden</h2>
-            <div class="Vue_ensemble text-white mt-5">
-                <h2 class="font-bold text-xl">Vue d'ensemble</h2>
-                <div class="md:flex md:justify-between">
-                    <div id="SoldeTotal"
-                        class=" bg-blue-800 font-semibold text-xl flex rounded-2xl px-6 py-5 my-5 hover:bg-sky-700 hover:font-bold">
-                    </div>
-                    <div id="RevenuTotal"
-                        class=" bg-green-800 font-semibold text-xl flex rounded-xl px-6 py-5 my-5 hover:font-bold hover:bg-green-700">
+        </div>
+        <div id="listTransactions" class="bg-[#6A5E91] rounded-2xl p-4 h-80 overflow-y-auto flex flex-col gap-3 shadow-inner">
+            <!-- Les transactions seront insérées ici -->
+        </div>
+    </section>
 
-                    </div>
-                    <div id="depenseTotal"
-                        class=" bg-red-800 font-semibold text-xl flex rounded-xl px-6 py-5 my-5 hover:bg-red-700 hover:font-bold">
+    <!-- Formulaire -->
+    <section>
+        <div id="form-container" class="absolute top-48 left-24 bg-white w-72 md:left-96 md:top-36 rounded-2xl p-6 shadow-xl hidden">
+            <p class="mb-4 text-lg font-semibold text-gray-800">
+                Ajouter une transaction
+                <span id="btn-fermer-form" class="text-red-600 cursor-pointer float-right text-2xl">&times;</span>
+            </p>
+            <form id="form-ajouter" class="space-y-3">
+                <input type="text" id="input-description" name="description" placeholder="Description"
+                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                <input type="number" id="input-montant" name="montant" placeholder="Montant"
+                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required step="0.01">
+                <select id="select-type" name="type" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                    <option value="revenu">Revenu</option>
+                    <option value="depense">Dépense</option>
+                </select>
+                <input type="date" id="input-date" name="date"
+                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                <button id="btn-ajouter" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-all">
+                    Ajouter
+                </button>
+            </form>
+        </div>
+    </section>
 
-                    </div>
+    <!-- Modal suppression -->
+    <section class="modal">
+        <div id="modal-supprimer" class="hidden fixed inset-0 bg-red-600 bg-opacity-40 flex justify-center items-center z-50">
+            <div class="bg-white rounded-2xl p-6 w-80 shadow-xl">
+                <h2 class="text-lg font-semibold text-black mb-4">Confirmer la suppression</h2>
+                <p class="text-gray-700 mb-6">Voulez-vous vraiment supprimer cette transaction ?</p>
+                <div class="flex justify-end gap-4">
+                    <button id="btn-annuler-suppression" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-lg text-gray-800">Annuler</button>
+                    <button id="btn-confirmer-suppression" class="px-4 py-2 bg-red-600 hover:bg-red-800 text-white rounded-lg">Supprimer</button>
                 </div>
             </div>
-        </section>
-        <section class="col-span-9 md:col-span-7 mx-9 flex flex-col">
-            <h2 class="hidden">titre hiiden</h2>
-            <div>
-                <div class="flex my-5 flex-wrap gap-3">
-                    <h2 class="font-bold text-xl text-white">Vos Transactions</h2>
-                    <button type="button" id="btn-ajoute-transaction"
-                        class="bg-white rounded-2xl pl-1 pr-3 hover:font-bold hover:bg-black hover:text-white flex items-center gap-1">
-                        <i class='bx bx-plus-circle'></i>
-                        Ajouter une transaction
-
-                    </button>
-                </div>
-                <div id="listTransactions"
-                    class="bg-[#6A5E91] w-full h-80 rounded-2xl mb-9 flex flex-wrap gap-2 p-4 overflow-y-auto">
-                </div>
-            </div>
-        </section>
-        <section>
-            <h2 class="hidden">titre hiiden</h2>
-            <div id="form-container"
-                class="absolute top-48 left-24 bg-[#eee] w-60 rounded-xl p-4 py-6 ml-7 md:left-96 md:top-34 hidden">
-                <p class="mb-4 text-lg font-semibold">
-                    Ajouter une transaction
-                    <span id="btn-fermer-form" class="text-red-700 cursor-pointer float-right text-xl">&times;</span>
-                </p>
-
-                <form id="form-ajouter" class="pr-4">
-                    <label for="input-description"
-                        class="block text-sm font-medium text-gray-700 mb-1">Description:</label>
-                    <input type="text" id="input-description" name="description"
-                        class="w-44 border border-gray-400 rounded h-8 mb-2 px-2" required>
-
-                    <label for="input-montant" class="block text-sm font-medium text-gray-700 mb-1">Montant:</label>
-                    <input type="number" id="input-montant" name="montant"
-                        class="w-44 border border-gray-400 rounded h-8 mb-2 px-2" required step="0.01">
-
-                    <label for="select-type" class="block text-sm font-medium text-gray-700 mb-1">Type:</label>
-                    <select id="select-type" name="type" class="w-44 px-4 py-2 border border-gray-300 rounded mb-4"
-                        required>
-                        <option value="revenu">Revenu</option>
-                        <option value="depense">Dépense</option>
-                    </select>
-
-                    <label for="input-date" class="block text-sm font-medium text-gray-700 mb-1">Date:</label>
-                    <input type="date" id="input-date" name="date"
-                        class="w-44 px-4 py-2 border border-gray-300 rounded-lg mb-4" required>
-
-                    <button id="btn-ajouter" type="submit"
-                        class="ml-7 w-32 bg-blue-600 hover:bg-green-800 text-white font-medium rounded-lg transition duration-200">
-                        Ajouter
-                    </button>
-                </form>
-            </div>
-        </section>
-        <section class="modal">
-            <div id="modal-supprimer"
-                class="hidden fixed inset-0 bg-red-600 bg-opacity-50 flex justify-center items-center z-50">
-                <div class="bg-white rounded-2xl p-6 w-80">
-                    <h2 class="text-lg font-semibold text-black mb-4">Confirmer la suppression</h2>
-                    <p class="text-black mb-6">Voulez-vous vraiment supprimer cette transaction ?</p>
-                    <div class="flex justify-end gap-4">
-                        <button id="btn-annuler-suppression"
-                            class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-lg text-gray-800">Annuler</button>
-                        <button id="btn-confirmer-suppression"
-                            class="px-4 py-2 bg-red-600 hover:bg-red-900 text-white rounded-lg">Supprimer</button>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
+    
     <script src="./js/nav.js"></script>
     <script src="./js/main.js"></script>
 </body>
