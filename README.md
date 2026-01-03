@@ -1,4 +1,3 @@
-````markdown
 # Beztami - Tableau de bord des transactions
 
 **Beztami** est une application web simple et intuitive permettant de gérer vos revenus, vos dépenses et votre solde en temps réel.  
@@ -90,6 +89,3 @@ Créé par : **ABADA AZIZ**
 
 ![Aperçu du tableau de bord](./assets/Rondu_Final/tableauDeBord.png)
 
-```
-
----
