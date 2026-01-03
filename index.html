@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Gérez vos revenus, dépenses et transactions facilement avec Beztami. Suivez vos finances en temps réel depuis votre tableau de bord intuitif et sécurisé.">
-    <meta name="keywords" content="Beztami, finances, tableau de bord, transactions, gestion budget, revenus, dépenses, application finance">    <!--  Auteur du site -->
+    <meta name="keywords" content="Beztami, finances, tableau de bord, transactions, gestion budget, revenus, dépenses, application finance">
     <meta name="author" content="Beztami Team">
     <meta property="og:title" content="Beztami - Tableau de bord des transactions">
     <meta property="og:description" content="Suivez vos revenus et dépenses avec Beztami, un tableau de bord simple et intuitif pour gérer vos finances.">
@@ -14,131 +14,715 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Beztami - Tableau de bord des transactions">
     <meta name="twitter:description" content="Gérez vos finances facilement avec Beztami.">
-    <title>Beztami</title>
+    <title>Beztami - Tableau de bord</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles personnalisés -->
+    <style>
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #4A44C6;
+            --accent-color: #FF6584;
+            --dark-color: #2A265F;
+            --light-color: #F8F9FF;
+            --success-color: #36D7B7;
+            --warning-color: #FFB74D;
+            --danger-color: #FF6B6B;
+            --gray-color: #8C8CA1;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F8F9FF 0%, #F0F2FF 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        .sidebar-gradient {
+            background: linear-gradient(180deg, var(--dark-color) 0%, #3A3786 100%);
+        }
+        
+        .transaction-income {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .transaction-expense {
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+        
+        /* Animation pour l'apparition des éléments */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
 </head>
 
-<body class="bg-[#f5f5f5] font-gelasio">
-
-<main class="grid grid-cols-9 grid-rows-20 min-h-screen">
-    <!-- Header -->
-    <header class="bg-gradient-to-r from-[#3A2061] to-[#2C2644] text-white flex items-center justify-between px-6 py-4 col-span-9 row-span-4 shadow-lg">
-        <div class="flex items-center space-x-3">
-            <i id="menu-icon-btn" class='bx bx-menu text-2xl cursor-pointer md:hidden'></i>
-            <h1 class="text-xl md:text-2xl font-bold tracking-wide">Bienvenu sur votre Tableau de bord</h1>
-        </div>
-        <div class="hidden md:flex space-x-3">
-            <span class="text-gray-300">Bonjour, ABADA AZIZ</span>
-        </div>
-    </header>
-
-    <!-- Sidebar -->
-    <aside id="sidebar" class="fixed z-50 top-0 left-0 h-screen w-64 bg-[#2C2644] p-6 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:static md:col-span-2 md:row-span-4 shadow-lg rounded-r-xl">
-        <button id="close-btn" class="absolute top-4 right-4 text-white text-2xl md:hidden hover:text-gray-300">
-            <i class='bx bx-x'></i>
-        </button>
-
-        <!-- Profile -->
-        <div class="profile text-center mb-8">
-            <img src="./assets/images/logo.png" alt="Logo Beztami" class="mx-auto w-24 mb-4">
-            <img src="./assets/images/men.jpg" alt="photo profile"
-                class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-pink-600 p-1 shadow-md">
-            <h2 class="font-semibold text-white text-lg">ABADA AZIZ</h2>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="nav mb-8">
-            <ul class="space-y-3">
-                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">TRANSACTION</li>
-                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">Paramètre</li>
-                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">Compte</li>
-                <li class="text-white p-3 hover:bg-[#3A2061] rounded-lg cursor-pointer transition duration-200">Aide</li>
-            </ul>
-        </nav>
-
-        <button type="button"
-            class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-shadow shadow-md">
-            DÉCONNEXION
-        </button>
-    </aside>
-
-    <!-- Vue d'ensemble -->
-    <section class="col-span-9 md:col-span-7 mx-6 mt-6">
-        <div class="text-white">
-            <h2 class="font-bold text-2xl mb-4">Vue d'ensemble</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div id="SoldeTotal" class="bg-gradient-to-r from-blue-700 to-blue-500 font-semibold text-lg rounded-2xl px-6 py-5 shadow-lg hover:shadow-xl transition-all flex justify-between items-center">
-                    <span>Solde Total</span>
+<body class="min-h-screen">
+    <!-- Conteneur principal -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar (cachée sur mobile) -->
+        <aside id="sidebar" class="sidebar-gradient w-64 min-h-screen fixed md:relative z-30 transform -translate-x-full md:translate-x-0 transition-transform duration-300">
+            <div class="p-6 h-full flex flex-col">
+                <!-- Logo et profil -->
+                <div class="flex items-center mb-8">
+                    <div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center mr-3">
+                        <span class="text-2xl font-bold text-[#6C63FF]">B</span>
+                    </div>
+                    <h1 class="text-xl font-bold text-white">Beztami</h1>
                 </div>
-                <div id="RevenuTotal" class="bg-gradient-to-r from-green-700 to-green-500 font-semibold text-lg rounded-2xl px-6 py-5 shadow-lg hover:shadow-xl transition-all flex justify-between items-center">
-                    <span>Revenu Total</span>
+                
+                <!-- Profil utilisateur -->
+                <div class="flex items-center mb-10 p-3 rounded-xl bg-white/10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden mr-3 border-2 border-white">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80" alt="Photo de profil" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="text-white font-semibold">ABADA AZIZ</p>
+                        <p class="text-sm text-gray-300">Utilisateur Premium</p>
+                    </div>
                 </div>
-                <div id="depenseTotal" class="bg-gradient-to-r from-red-700 to-red-500 font-semibold text-lg rounded-2xl px-6 py-5 shadow-lg hover:shadow-xl transition-all flex justify-between items-center">
-                    <span>Dépense Total</span>
+                
+                <!-- Navigation -->
+                <nav class="mb-8">
+                    <ul class="space-y-2">
+                        <li class="flex items-center p-3 rounded-xl bg-white/10 text-white font-medium">
+                            <i class='bx bx-bar-chart-alt-2 mr-3 text-lg'></i>
+                            Tableau de bord
+                        </li>
+                        <li class="flex items-center p-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-colors cursor-pointer">
+                            <i class='bx bx-transfer-alt mr-3 text-lg'></i>
+                            Transactions
+                        </li>
+                        <li class="flex items-center p-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-colors cursor-pointer">
+                            <i class='bx bx-pie-chart-alt-2 mr-3 text-lg'></i>
+                            Budgets
+                        </li>
+                        <li class="flex items-center p-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-colors cursor-pointer">
+                            <i class='bx bx-cog mr-3 text-lg'></i>
+                            Paramètres
+                        </li>
+                        <li class="flex items-center p-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-colors cursor-pointer">
+                            <i class='bx bx-help-circle mr-3 text-lg'></i>
+                            Aide
+                        </li>
+                    </ul>
+                </nav>
+                
+                <!-- Carte de stats -->
+                <div class="mt-auto p-4 rounded-xl bg-white/10 text-white mb-6">
+                    <p class="text-sm text-gray-300 mb-1">Votre solde actuel</p>
+                    <p class="text-2xl font-bold">€ 4,850.75</p>
+                    <div class="flex items-center mt-2">
+                        <i class='bx bx-trending-up text-green-400 mr-1'></i>
+                        <span class="text-sm text-green-400">+12.5% ce mois</span>
+                    </div>
+                </div>
+                
+                <!-- Bouton déconnexion -->
+                <button class="flex items-center justify-center p-3 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors">
+                    <i class='bx bx-log-out mr-2'></i>
+                    Déconnexion
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Contenu principal -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="glass-effect p-4 md:p-6 border-b border-gray-100">
+                <div class="flex justify-between items-center">
+                    <!-- Bouton menu mobile -->
+                    <button id="menu-icon-btn" class="md:hidden p-2 rounded-lg bg-white shadow-md">
+                        <i class='bx bx-menu text-2xl text-[#6C63FF]'></i>
+                    </button>
+                    
+                    <!-- Titre et recherche -->
+                    <div class="flex-1 ml-4 md:ml-0">
+                        <h1 class="text-xl md:text-2xl font-bold text-gray-800">Tableau de bord financier</h1>
+                        <p class="text-sm text-gray-500">Bienvenue, ABADA AZIZ</p>
+                    </div>
+                    
+                    <!-- Actions header -->
+                    <div class="flex items-center space-x-4">
+                        <div class="hidden md:block relative">
+                            <input type="text" placeholder="Rechercher..." class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:border-transparent">
+                            <i class='bx bx-search absolute left-3 top-2.5 text-gray-400'></i>
+                        </div>
+                        <button class="p-2 rounded-full bg-white shadow-md">
+                            <i class='bx bx-bell text-xl text-gray-600'></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Contenu -->
+            <main class="flex-1 p-4 md:p-6">
+                <!-- Cartes de synthèse -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card-shadow bg-white rounded-2xl p-6 fade-in">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-500 text-sm">Solde total</p>
+                                <p class="text-3xl font-bold text-gray-800 mt-2">€ 4,850.75</p>
+                                <div class="flex items-center mt-2">
+                                    <i class='bx bx-up-arrow-alt text-green-500 mr-1'></i>
+                                    <span class="text-sm text-green-500">+5.2%</span>
+                                    <span class="text-sm text-gray-500 ml-2">vs mois dernier</span>
+                                </div>
+                            </div>
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
+                                <i class='bx bx-wallet text-2xl text-blue-500'></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-shadow bg-white rounded-2xl p-6 fade-in" style="animation-delay: 0.1s">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-500 text-sm">Revenu total</p>
+                                <p class="text-3xl font-bold text-gray-800 mt-2">€ 3,200.00</p>
+                                <div class="flex items-center mt-2">
+                                    <i class='bx bx-up-arrow-alt text-green-500 mr-1'></i>
+                                    <span class="text-sm text-green-500">+12.3%</span>
+                                    <span class="text-sm text-gray-500 ml-2">vs mois dernier</span>
+                                </div>
+                            </div>
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center">
+                                <i class='bx bx-trending-up text-2xl text-green-500'></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-shadow bg-white rounded-2xl p-6 fade-in" style="animation-delay: 0.2s">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-500 text-sm">Dépenses totales</p>
+                                <p class="text-3xl font-bold text-gray-800 mt-2">€ 1,850.25</p>
+                                <div class="flex items-center mt-2">
+                                    <i class='bx bx-down-arrow-alt text-red-500 mr-1'></i>
+                                    <span class="text-sm text-red-500">-2.1%</span>
+                                    <span class="text-sm text-gray-500 ml-2">vs mois dernier</span>
+                                </div>
+                            </div>
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-100 to-red-50 flex items-center justify-center">
+                                <i class='bx bx-trending-down text-2xl text-red-500'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section transactions -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Liste des transactions -->
+                    <div class="lg:col-span-2">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-xl font-bold text-gray-800">Transactions récentes</h2>
+                            <button id="btn-ajoute-transaction" class="btn-primary text-white px-5 py-2.5 rounded-xl font-medium flex items-center">
+                                <i class='bx bx-plus mr-2'></i> Nouvelle transaction
+                            </button>
+                        </div>
+                        
+                        <div class="card-shadow bg-white rounded-2xl overflow-hidden">
+                            <div class="p-6">
+                                <!-- En-têtes de tableau -->
+                                <div class="grid grid-cols-12 gap-4 pb-4 border-b border-gray-100 text-sm text-gray-500 font-medium">
+                                    <div class="col-span-5">Description</div>
+                                    <div class="col-span-3">Date</div>
+                                    <div class="col-span-2">Type</div>
+                                    <div class="col-span-2 text-right">Montant</div>
+                                </div>
+                                
+                                <!-- Liste des transactions -->
+                                <div id="listTransactions" class="max-h-96 overflow-y-auto">
+                                    <!-- Transactions seront ajoutées ici dynamiquement -->
+                                </div>
+                                
+                                <!-- Message si pas de transactions -->
+                                <div id="empty-transactions" class="text-center py-10">
+                                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class='bx bx-receipt text-3xl text-gray-400'></i>
+                                    </div>
+                                    <p class="text-gray-500">Aucune transaction pour le moment</p>
+                                    <p class="text-sm text-gray-400 mt-1">Ajoutez votre première transaction</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section graphique et stats -->
+                    <div class="lg:col-span-1">
+                        <div class="card-shadow bg-white rounded-2xl p-6 mb-6">
+                            <h3 class="font-bold text-gray-800 mb-4">Répartition des dépenses</h3>
+                            <div class="flex items-center justify-center mb-6">
+                                <!-- Graphique circulaire simple -->
+                                <div class="relative w-40 h-40">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="text-center">
+                                            <p class="text-2xl font-bold text-gray-800">65%</p>
+                                            <p class="text-xs text-gray-500">Économies</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-full h-full" viewBox="0 0 100 100">
+                                        <!-- Secteur 1 -->
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke="#36D7B7" stroke-width="20" stroke-dasharray="65 100" stroke-dashoffset="25" transform="rotate(-90 50 50)"/>
+                                        <!-- Secteur 2 -->
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke="#FF6B6B" stroke-width="20" stroke-dasharray="35 100" stroke-dashoffset="90" transform="rotate(-90 50 50)"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 rounded-full bg-[#36D7B7] mr-3"></div>
+                                        <span class="text-gray-700">Économies</span>
+                                    </div>
+                                    <span class="font-bold">65%</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 rounded-full bg-[#FF6B6B] mr-3"></div>
+                                        <span class="text-gray-700">Dépenses</span>
+                                    </div>
+                                    <span class="font-bold">35%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Prochaines échéances -->
+                        <div class="card-shadow bg-white rounded-2xl p-6">
+                            <h3 class="font-bold text-gray-800 mb-4">Prochaines échéances</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-blue-50">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
+                                            <i class='bx bx-home text-blue-500'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Loyer</p>
+                                            <p class="text-xs text-gray-500">Dans 3 jours</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-bold text-gray-800">€ 850</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between p-3 rounded-xl bg-yellow-50">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center mr-3">
+                                            <i class='bx bx-car text-yellow-500'></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Assurance auto</p>
+                                            <p class="text-xs text-gray-500">Dans 10 jours</p>
+                                        </div>
+                                    </div>
+                                    <span class="font-bold text-gray-800">€ 120</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Modal pour ajouter une transaction -->
+    <div id="form-container" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden">
+            <div class="p-6 border-b border-gray-100">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-gray-800">Nouvelle transaction</h3>
+                    <button id="btn-fermer-form" class="text-gray-400 hover:text-gray-600 text-2xl">
+                        <i class='bx bx-x'></i>
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Transactions -->
-    <section class="col-span-9 md:col-span-7 mx-6 mt-6">
-        <div class="flex flex-wrap justify-between items-center mb-4">
-            <h2 class="font-bold text-2xl text-[#fff]">Vos Transactions</h2>
-            <button id="btn-ajoute-transaction" class="bg-white text-[#3A2061] px-4 py-2 rounded-2xl hover:bg-[#3A2061] hover:text-white flex items-center gap-2 transition-all">
-                <i class='bx bx-plus-circle'></i> Ajouter une transaction
-            </button>
-        </div>
-        <div id="listTransactions" class="bg-[#6A5E91] rounded-2xl p-4 h-80 overflow-y-auto flex flex-col gap-3 shadow-inner">
-            <!-- Les transactions seront insérées ici -->
-        </div>
-    </section>
-
-    <!-- Formulaire -->
-    <section>
-        <div id="form-container" class="absolute top-48 left-24 bg-white w-72 md:left-96 md:top-36 rounded-2xl p-6 shadow-xl hidden">
-            <p class="mb-4 text-lg font-semibold text-gray-800">
-                Ajouter une transaction
-                <span id="btn-fermer-form" class="text-red-600 cursor-pointer float-right text-2xl">&times;</span>
-            </p>
-            <form id="form-ajouter" class="space-y-3">
-                <input type="text" id="input-description" name="description" placeholder="Description"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
-                <input type="number" id="input-montant" name="montant" placeholder="Montant"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required step="0.01">
-                <select id="select-type" name="type" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
-                    <option value="revenu">Revenu</option>
-                    <option value="depense">Dépense</option>
-                </select>
-                <input type="date" id="input-date" name="date"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
-                <button id="btn-ajouter" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-all">
-                    Ajouter
-                </button>
+            
+            <form id="form-ajouter" class="p-6 space-y-5">
+                <div>
+                    <label for="input-description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                    <input type="text" id="input-description" name="description" placeholder="Ex: Salaire, Courses..." 
+                        class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:border-transparent" required>
+                </div>
+                
+                <div>
+                    <label for="input-montant" class="block text-sm font-medium text-gray-700 mb-1">Montant (€)</label>
+                    <input type="number" id="input-montant" name="montant" placeholder="0.00" step="0.01"
+                        class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:border-transparent" required>
+                </div>
+                
+                <div>
+                    <label for="select-type" class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                    <select id="select-type" name="type" 
+                        class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:border-transparent" required>
+                        <option value="revenu">Revenu</option>
+                        <option value="depense">Dépense</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="input-date" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                    <input type="date" id="input-date" name="date"
+                        class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#6C63FF] focus:border-transparent" required>
+                </div>
+                
+                <div class="pt-4">
+                    <button type="submit" class="w-full btn-primary text-white font-medium py-3.5 rounded-xl">
+                        Ajouter la transaction
+                    </button>
+                </div>
             </form>
         </div>
-    </section>
-
-    <!-- Modal suppression -->
-    <section class="modal">
-        <div id="modal-supprimer" class="hidden fixed inset-0 bg-red-600 bg-opacity-40 flex justify-center items-center z-50">
-            <div class="bg-white rounded-2xl p-6 w-80 shadow-xl">
-                <h2 class="text-lg font-semibold text-black mb-4">Confirmer la suppression</h2>
-                <p class="text-gray-700 mb-6">Voulez-vous vraiment supprimer cette transaction ?</p>
-                <div class="flex justify-end gap-4">
-                    <button id="btn-annuler-suppression" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-lg text-gray-800">Annuler</button>
-                    <button id="btn-confirmer-suppression" class="px-4 py-2 bg-red-600 hover:bg-red-800 text-white rounded-lg">Supprimer</button>
+    </div>
+    
+    <!-- Modal de confirmation de suppression -->
+    <div id="modal-supprimer" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                        <i class='bx bx-trash text-2xl text-red-500'></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Supprimer la transaction</h3>
+                        <p class="text-gray-500">Cette action est irréversible</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 mb-6">Êtes-vous sûr de vouloir supprimer cette transaction ? Cette action ne peut pas être annulée.</p>
+                
+                <div class="flex justify-end gap-3">
+                    <button id="btn-annuler-suppression" class="px-5 py-2.5 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors">
+                        Annuler
+                    </button>
+                    <button id="btn-confirmer-suppression" class="px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-xl transition-colors">
+                        Supprimer
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
-</main>
+    </div>
     
-    <script src="./js/nav.js"></script>
-    <script src="./js/main.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Variables globales
+        let transactions = [];
+        let transactionToDelete = null;
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion de la sidebar mobile
+            const menuBtn = document.getElementById('menu-icon-btn');
+            const sidebar = document.getElementById('sidebar');
+            
+            menuBtn.addEventListener('click', function() {
+                sidebar.classList.remove('-translate-x-full');
+            });
+            
+            // Fermer la sidebar
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth < 768 && !sidebar.contains(e.target) && e.target !== menuBtn) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+            
+            // Gestion du formulaire
+            const addBtn = document.getElementById('btn-ajoute-transaction');
+            const formContainer = document.getElementById('form-container');
+            const closeFormBtn = document.getElementById('btn-fermer-form');
+            const form = document.getElementById('form-ajouter');
+            
+            addBtn.addEventListener('click', function() {
+                formContainer.classList.remove('hidden');
+                document.getElementById('input-date').valueAsDate = new Date();
+            });
+            
+            closeFormBtn.addEventListener('click', function() {
+                formContainer.classList.add('hidden');
+            });
+            
+            // Gestion de la soumission du formulaire
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const description = document.getElementById('input-description').value;
+                const montant = parseFloat(document.getElementById('input-montant').value);
+                const type = document.getElementById('select-type').value;
+                const date = document.getElementById('input-date').value;
+                
+                const transaction = {
+                    id: Date.now(),
+                    description,
+                    montant,
+                    type,
+                    date,
+                    timestamp: new Date(date).getTime()
+                };
+                
+                transactions.push(transaction);
+                updateTransactionsList();
+                updateSummaryCards();
+                form.reset();
+                formContainer.classList.add('hidden');
+                
+                // Afficher un message de confirmation
+                showNotification('Transaction ajoutée avec succès !', 'success');
+            });
+            
+            // Gestion de la modal de suppression
+            const deleteModal = document.getElementById('modal-supprimer');
+            const cancelDeleteBtn = document.getElementById('btn-annuler-suppression');
+            const confirmDeleteBtn = document.getElementById('btn-confirmer-suppression');
+            
+            cancelDeleteBtn.addEventListener('click', function() {
+                deleteModal.classList.add('hidden');
+                transactionToDelete = null;
+            });
+            
+            confirmDeleteBtn.addEventListener('click', function() {
+                if (transactionToDelete) {
+                    transactions = transactions.filter(t => t.id !== transactionToDelete);
+                    updateTransactionsList();
+                    updateSummaryCards();
+                    deleteModal.classList.add('hidden');
+                    transactionToDelete = null;
+                    
+                    // Afficher un message de confirmation
+                    showNotification('Transaction supprimée avec succès !', 'info');
+                }
+            });
+            
+            // Fermer les modals en cliquant à l'extérieur
+            [formContainer, deleteModal].forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.add('hidden');
+                    }
+                });
+            });
+            
+            // Initialiser les transactions avec des exemples
+            initSampleTransactions();
+        });
+        
+        // Initialiser des transactions d'exemple
+        function initSampleTransactions() {
+            const sampleTransactions = [
+                {
+                    id: 1,
+                    description: "Salaire",
+                    montant: 2500,
+                    type: "revenu",
+                    date: "2023-10-28",
+                    timestamp: new Date("2023-10-28").getTime()
+                },
+                {
+                    id: 2,
+                    description: "Courses alimentaires",
+                    montant: 85.60,
+                    type: "depense",
+                    date: "2023-10-27",
+                    timestamp: new Date("2023-10-27").getTime()
+                },
+                {
+                    id: 3,
+                    description: "Facture d'électricité",
+                    montant: 65.30,
+                    type: "depense",
+                    date: "2023-10-25",
+                    timestamp: new Date("2023-10-25").getTime()
+                },
+                {
+                    id: 4,
+                    description: "Freelance",
+                    montant: 700,
+                    type: "revenu",
+                    date: "2023-10-20",
+                    timestamp: new Date("2023-10-20").getTime()
+                }
+            ];
+            
+            transactions = sampleTransactions;
+            updateTransactionsList();
+            updateSummaryCards();
+        }
+        
+        // Mettre à jour la liste des transactions
+        function updateTransactionsList() {
+            const container = document.getElementById('listTransactions');
+            const emptyMsg = document.getElementById('empty-transactions');
+            
+            if (transactions.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                container.innerHTML = '';
+                return;
+            }
+            
+            emptyMsg.classList.add('hidden');
+            
+            // Trier par date (plus récent en premier)
+            transactions.sort((a, b) => b.timestamp - a.timestamp);
+            
+            // Générer le HTML
+            container.innerHTML = '';
+            
+            transactions.forEach(transaction => {
+                const transactionElement = document.createElement('div');
+                transactionElement.className = `grid grid-cols-12 gap-4 py-4 border-b border-gray-100 last:border-0 items-center ${transaction.type === 'revenu' ? 'transaction-income' : 'transaction-expense'}`;
+                transactionElement.setAttribute('data-id', transaction.id);
+                
+                const formattedDate = new Date(transaction.date).toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                const amountClass = transaction.type === 'revenu' ? 'text-green-600' : 'text-red-600';
+                const amountPrefix = transaction.type === 'revenu' ? '+' : '-';
+                
+                transactionElement.innerHTML = `
+                    <div class="col-span-5 flex items-center">
+                        <div class="w-10 h-10 rounded-lg ${transaction.type === 'revenu' ? 'bg-green-100' : 'bg-red-100'} flex items-center justify-center mr-3">
+                            <i class='bx ${transaction.type === 'revenu' ? 'bx-up-arrow-alt text-green-600' : 'bx-down-arrow-alt text-red-600'}'></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-800">${transaction.description}</p>
+                            <p class="text-xs text-gray-500">${transaction.type === 'revenu' ? 'Revenu' : 'Dépense'}</p>
+                        </div>
+                    </div>
+                    <div class="col-span-3 text-gray-600">${formattedDate}</div>
+                    <div class="col-span-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-medium ${transaction.type === 'revenu' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                            ${transaction.type === 'revenu' ? 'Revenu' : 'Dépense'}
+                        </span>
+                    </div>
+                    <div class="col-span-2 text-right font-bold ${amountClass}">
+                        ${amountPrefix}€ ${transaction.montant.toFixed(2)}
+                    </div>
+                `;
+                
+                // Ajouter un événement de suppression
+                transactionElement.addEventListener('click', function(e) {
+                    if (e.target.closest('.delete-btn') || e.target.classList.contains('delete-btn')) return;
+                    
+                    // Pour l'exemple, on permet de supprimer en cliquant sur la transaction
+                    // Dans une vraie application, on aurait un bouton de suppression dédié
+                    transactionToDelete = transaction.id;
+                    document.getElementById('modal-supprimer').classList.remove('hidden');
+                });
+                
+                container.appendChild(transactionElement);
+            });
+        }
+        
+        // Mettre à jour les cartes de synthèse
+        function updateSummaryCards() {
+            const totalIncome = transactions
+                .filter(t => t.type === 'revenu')
+                .reduce((sum, t) => sum + t.montant, 0);
+                
+            const totalExpenses = transactions
+                .filter(t => t.type === 'depense')
+                .reduce((sum, t) => sum + t.montant, 0);
+                
+            const totalBalance = totalIncome - totalExpenses;
+            
+            // Mettre à jour les valeurs affichées (pour l'exemple)
+            // Dans une vraie application, on mettrait à jour les éléments DOM correspondants
+        }
+        
+        // Afficher une notification
+        function showNotification(message, type = 'info') {
+            // Créer l'élément de notification
+            const notification = document.createElement('div');
+            
+            let bgColor = 'bg-blue-500';
+            let icon = 'bx-info-circle';
+            
+            if (type === 'success') {
+                bgColor = 'bg-green-500';
+                icon = 'bx-check-circle';
+            } else if (type === 'error') {
+                bgColor = 'bg-red-500';
+                icon = 'bx-error-circle';
+            } else if (type === 'warning') {
+                bgColor = 'bg-yellow-500';
+                icon = 'bx-error';
+            }
+            
+            notification.className = `fixed top-6 right-6 ${bgColor} text-white p-4 rounded-xl shadow-lg z-50 flex items-center transform translate-x-full opacity-0 transition-all duration-300`;
+            notification.innerHTML = `
+                <i class='bx ${icon} text-xl mr-3'></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Afficher la notification
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full', 'opacity-0');
+                notification.classList.add('translate-x-0', 'opacity-100');
+            }, 10);
+            
+            // Masquer la notification après 3 secondes
+            setTimeout(() => {
+                notification.classList.remove('translate-x-0', 'opacity-100');
+                notification.classList.add('translate-x-full', 'opacity-0');
+                
+                // Supprimer l'élément après l'animation
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
 </body>
-
 </html>
